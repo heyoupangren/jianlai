@@ -30,9 +30,10 @@ public class AuthorizeController {
 
     @Autowired
     private UserMapper userMapper;
+
     //传递必要参数，github授权登录
     @GetMapping("/callback")
-    public String callback(@RequestParam(name = "code") String code, @RequestParam(name = "state") String state, HttpServletResponse response){
+    public String callback(@RequestParam(name = "code") String code, @RequestParam(name = "state") String state, HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setClient_secret(clientSecret);
@@ -42,7 +43,7 @@ public class AuthorizeController {
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubUser = gitHubProvider.getUser(accessToken);
         System.out.println(githubUser.getName());
-        if(githubUser!=null){
+        if (githubUser != null && githubUser.getId() != null) {
             //登录成功
             User user = new User();
             String token = UUID.randomUUID().toString();
@@ -52,9 +53,9 @@ public class AuthorizeController {
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userMapper.insert(user);
-            response.addCookie(new Cookie("token",token));
+            response.addCookie(new Cookie("token", token));
             return "redirect:/";
-        }else{
+        } else {
             //登录失败
             return "redirect:/";
         }
