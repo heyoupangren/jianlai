@@ -1,10 +1,10 @@
-package life.jianlai.community.model;
+package life.jianlai.community.dto;
 
+import life.jianlai.community.model.User;
 import lombok.Data;
 
 @Data
-public class Question {
-
+public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;
@@ -15,4 +15,5 @@ public class Question {
     private Integer viewCount;
     private Integer commentCount;
     private Integer likeCount;
+    private User user;
 }

@@ -13,13 +13,6 @@
  
  [FlyWay](https://flywaydb.org/getstarted/firststeps/maven)
  
+ [LomBok](https://projectlombok.org/setup/maven)使用时要在idea中安装lombok插件
  
- CREATE TABLE USER
- (
-   ID int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-   ACCOUNT_ID VARCHAR(100),
-   USERNAME VARCHAR(50),
-   TOKEN VARCHAR(36),
-   GMT_CREATE BIGINT,
-   GMT_MODIFIED BIGINT
- );
+ 
